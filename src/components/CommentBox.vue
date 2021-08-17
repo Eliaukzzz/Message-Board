@@ -35,8 +35,12 @@ export default defineComponent({
   setup(_props, context) {
     const content = ref("");
     const handleSubmit = () => {
-      context.emit("submit", content.value);
-      content.value = "";
+      if (content.value) {
+        context.emit("submit", content.value);
+        content.value = "";
+      } else {
+        alert("你还没填内容呢！");
+      }
     };
     return {
       content,
